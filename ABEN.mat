@@ -1,0 +1,21 @@
+function [pars, Init, lo, hi] = load_global(Adata,Bdata,Ndata,Edata, INDMAP,sub_id)
+
+C0 = 15; 
+A0 = Adata(1);
+B0 = Bdata(1);
+E0 = Edata(1);
+N0 = Ndata(1);
+
+
+Init = [C0; A0; B0; E0; N0];
+
+
+% pars
+load NOMINAL.mat
+
+pars = optpars(:, sub_id);
+lo = zeros(size(pars));
+lo = lo(INDMAP);
+hi = 1e3*pars; 
+hi = hi(INDMAP);
+
